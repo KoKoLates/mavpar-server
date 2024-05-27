@@ -1,5 +1,8 @@
+import './App.css';
+
 import React from 'react';
-import MainBlock from './components/mainBlock';
+import Main from './components/main';
+
 
 const App: React.FC = () => {
   return (
@@ -11,9 +14,9 @@ const App: React.FC = () => {
       alignItems: 'center',
       backgroundColor: '#f0f0f0'
     }}>
-      <MainBlock />
+      <Main></Main>
     </div>
-  );
-};
+  )
+}
 
 export default App;
