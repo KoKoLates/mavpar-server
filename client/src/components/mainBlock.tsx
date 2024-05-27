@@ -14,8 +14,32 @@ const MainBlock: React.FC = () => {
     setPort('');
   };
 
-  const handleModify = () => {
+  const handleModify = async () => {
     console.log(`${selectedBlock}: {ip: ${ip}, port: ${port}}`);
+
+    const serviceData = {
+      mavproxy: selectedBlock === 'A' ? { ip, port: parseInt(port, 10) } : undefined,
+      gstreamer: selectedBlock === 'B' ? { ip, port: parseInt(port, 10) } : undefined,
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:8080/update_service', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(serviceData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleCancel = () => {

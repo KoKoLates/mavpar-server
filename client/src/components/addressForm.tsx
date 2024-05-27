@@ -82,7 +82,7 @@ const styles = {
     borderRadius: '5px',
     border: 'none',
     cursor: 'pointer',
-    marginLeft: '5px',
+    margin: '5px 20px',
   } as React.CSSProperties,
 };
 
