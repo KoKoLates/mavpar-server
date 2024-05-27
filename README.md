@@ -1,2 +1,3 @@
-# param-cfg-server
-The lightweight server for configure parameter of IP addresses for proxy and streaming.
+# Mavpar Server
+
+A restful server with actix backend and react frontend for several embedded parameters configuration. 
