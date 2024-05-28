@@ -18,6 +18,6 @@ export const styles = {
     borderRadius: '5px',
     border: 'none',
     cursor: 'pointer',
-    margin: '5px 20px',
+    margin: '5px 5px',
   } as React.CSSProperties
 };
