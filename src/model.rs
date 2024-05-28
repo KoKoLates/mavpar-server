@@ -3,21 +3,21 @@ use std::sync::Mutex;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Service {
-    pub ip: String,
-    pub port: u16,
+    pub host: String,
+    pub port: String,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Services {
     pub mavproxy: Service,
-    pub gstreamer: Service,
+    pub streamer: Service,
 }
 
 impl Default for Services {
     fn default() -> Self {
         Services {
-            mavproxy: Service { ip: "127.0.0.1".into(), port: 8080 },
-            gstreamer: Service { ip: "127.0.0.1".into(), port: 9090 },
+            mavproxy: Service { host: "127.0.0.1".into(), port: "8080".into() },
+            streamer: Service { host: "127.0.0.1".into(), port: "9090".into() },
         }
     }
 }
