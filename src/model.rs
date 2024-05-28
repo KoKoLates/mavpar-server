@@ -1,5 +1,6 @@
-use serde::{Deserialize, Serialize};
 use std::sync::Mutex;
+use serde::{Deserialize, Serialize};
+
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Service {
@@ -7,11 +8,13 @@ pub struct Service {
     pub port: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Services {
     pub mavproxy: Service,
     pub streamer: Service,
 }
+
 
 impl Default for Services {
     fn default() -> Self {
@@ -21,6 +24,7 @@ impl Default for Services {
         }
     }
 }
+
 
 pub struct AppState {
     pub services: Mutex<Services>,
