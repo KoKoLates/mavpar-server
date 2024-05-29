@@ -4,13 +4,11 @@ use log::info;
 use crate::model::{Services, AppState};
 use actix_web::{get, post, web, HttpResponse, Responder};
 
-
 #[get("/config")]
 pub async fn get_config(data: web::Data<AppState>) -> impl Responder {
     let services = data.services.lock().unwrap();
     HttpResponse::Ok().json(&*services)
 }
-
 
 #[get("/default")]
 pub async fn get_default(data: web::Data<AppState>) -> impl Responder {
@@ -18,7 +16,7 @@ pub async fn get_default(data: web::Data<AppState>) -> impl Responder {
         HttpResponse::InternalServerError().body(message.to_string())
     }
 
-    let file_content = match fs::read_to_string("default.json") {
+    let file_content = match fs::read_to_string("private.json") {
         Ok(content) => content,
         Err(e) => return internal_server_error(format!("Failed to read default.json: {}", e)),
     };
@@ -37,7 +35,6 @@ pub async fn get_default(data: web::Data<AppState>) -> impl Responder {
 
     HttpResponse::Ok().json(&*services)
 }
-
 
 #[post("/update")]
 pub async fn update(data: web::Data<AppState>, info: web::Json<Services>) -> impl Responder {
@@ -63,7 +60,6 @@ pub async fn update(data: web::Data<AppState>, info: web::Json<Services>) -> imp
     info!("Updated services: {:?}", &*services);
     HttpResponse::Ok().json(&*services)
 }
-
 
 pub async fn load_services(data: web::Data<AppState>) -> impl Responder {
     match fs::read_to_string("services.json") {
